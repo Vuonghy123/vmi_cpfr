@@ -13,7 +13,7 @@ import { windowWidth } from '../constant/Layout';
 import { getString } from '../utils/GetString';
 import ButtonLinear from '../components/ButtonLinear';
 import RNRestart from 'react-native-restart';
-import { HOME } from '../navigator/RouteName';
+import { BOTTOM_TAB, HOME } from '../navigator/RouteName';
 
 class LoginScreen extends React.Component {
     constructor(props) {
@@ -63,7 +63,7 @@ class LoginScreen extends React.Component {
             };
             //const response = await login(data)
             this.setState({ isLoading: false })
-            this.props.navigation.navigate(HOME)
+            this.props.navigation.navigate(BOTTOM_TAB)
 
         } else {
             this.setState({
@@ -187,13 +187,13 @@ class LoginScreen extends React.Component {
                                 size={scale(15)} extraStyle={{ marginRight: scale(5) }}></ImageIcon>
                             <Text allowFontScaling={false} style={{ color: PRIMARY_COLOR, fontWeight: 'bold', fontSize: scale(13) }}>{getString('LOGINSCREEN_TEXT_REMEMBER')}</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity
+                        {/* <TouchableOpacity
                             onPress={() => {
                                 this.props.navigation.navigate(FORGET_PASSWORD)
                             }}
                             style={{ width: '40%', height: '100%', alignItems: 'flex-end' }}>
                             <Text allowFontScaling={false} style={{ color: PRIMARY_COLOR, fontWeight: 'bold', fontSize: scale(13) }}>{getString('FORGET_PASSWORD')}</Text>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                     </View>
                     <View style={{ width: containerW, height: scale(47), justifyContent: 'center', alignItems: 'center' }}>
                         <ButtonLinear
@@ -202,8 +202,8 @@ class LoginScreen extends React.Component {
                         ></ButtonLinear>
                     </View>
                 </View>
-                <View style={{ height: '40%', width: '100%', justifyContent: 'center', alignItems: 'center', paddingBottom: scale(15) }}>
-                    <Image source={require('../res/images/login/bottomLogin.png')} />
+                <View style={{ height: '35%', width: '100%', justifyContent: 'center', alignItems: 'center', paddingBottom: scale(15) }}>
+                    <Image source={require('../res/images/login/VMI.png')} />
                 </View>
                 {
                     this.state.isLoading ? <Loading /> : null
@@ -219,28 +219,6 @@ class LoginScreen extends React.Component {
                     ) : null
                 }
                 {
-                    Platform.OS === 'ios' ?
-                        <View style={{ position: 'absolute', bottom: isLargePhone ? scale(20) : scale(3), width: windowWidth, justifyContent: 'center', alignItems: 'center' }}>
-                            {/* <Text allowFontScaling={false} style={{ color: GRAY_FONTCOLOR, fontSize: scale(10) }}>Email: info@edukite.vn - Website: <Text
-                                onPress={() => {
-                                    Linking.openURL(linkWebEdukite)
-                                }}
-                                style={{ textDecorationLine: 'underline', color: PRIMARY_COLOR, fontWeight: 'bold', fontStyle: 'italic' }}>{linkWebEdukite}</Text></Text> */}
-                            <Text allowFontScaling={false} style={{ color: GRAY_FONTCOLOR, fontSize: scale(10) }}>Copyright © 2020 by Headway</Text>
-
-                        </View> :
-                        <View style={{ position: 'absolute', bottom: isLargePhone ? scale(40) : scale(20), width: windowWidth, justifyContent: 'center', alignItems: 'center' }}>
-                            <Text allowFontScaling={false} style={{ color: GRAY_FONTCOLOR, fontSize: scale(10) }}>Copyright © 2020 by Headway</Text>
-                            {/* <Text allowFontScaling={false} style={{ color: GRAY_FONTCOLOR, fontSize: scale(10) }}>Email: info@edukite.vn - Website: <Text
-                                onPress={() => {
-                                    Linking.openURL(linkWebEdukite)
-                                }}
-                                style={{ textDecorationLine: 'underline', color: PRIMARY_COLOR, fontWeight: 'bold', fontStyle: 'italic' }}>{linkWebEdukite}</Text></Text> */}
-
-
-                        </View>
-                }
-                {
                     !this.state.isLoading ?
                         <TouchableOpacity
                             onPress={async () => {
@@ -249,7 +227,7 @@ class LoginScreen extends React.Component {
                                     isOpenModalLanguage: true
                                 })
                             }}
-                            style={{ position: 'absolute', right: scale(10), bottom: scale(10) }}>
+                            style={{ position: 'absolute', right: scale(10), bottom: scale(30) }}>
                             <ImageIcon source={require('../res/images/common/global.png')} size={scale(20)}></ImageIcon>
                         </TouchableOpacity>
                         : null}

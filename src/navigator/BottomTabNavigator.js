@@ -3,18 +3,11 @@ import {
     Image,
 } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { SCHEDULE, USER_INFO, MAP, EVENT, HOME, ERRORREPORT, CHAT, NOTIFICATION } from './RouteName';
+import { HOME, STAFF, GOODS, DEALS, NOTIFICATION,PARTERS} from './RouteName';
 import HomeScreen from '../screens/HomeScreen';
-import ErrorReportScreen from '../screens/ErrorReportScreen';
-import ScheduleScreen from '../screens/ScheduleScreens/ScheduleScreen';
-import ChatScreen from '../screens/Chat/ChatScreen';
-import EventScreen from '../screens/EventScreens/EventScreen';
+import LoginScreen from '../screens/LoginScreen';
 import { size } from '../constant/CommonStyles';
-import { BLACK, GRAY_FONTCOLOR, PRIMARY_COLOR, RED, WHITE } from '../constant/Colors';
-import { scaleVertical } from '../constant/Scale';
-import AccountScreen from '../screens/AccountSetting/AccountScreen';
-import NotificationScreen from '../screens/Notification/NotificationScreen';
-import { getString } from '../utils/GetString';
+import { GRAY_FONTCOLOR, PRIMARY_COLOR,WHITE } from '../constant/Colors';
 const Tab = createBottomTabNavigator();
 export default function BottomTabNavigator() {
     return (
@@ -29,15 +22,15 @@ export default function BottomTabNavigator() {
                     } else if (route.name === NOTIFICATION) {
                         iconName = require('../res/images/tab_bar/notiPressed.png');
                         iconNameGray = require('../res/images/tab_bar/noti.png');
-                    } else if (route.name === SCHEDULE) {
-                        iconName = require('../res/images/tab_bar/historyPressed.png');
-                        iconNameGray = require('../res/images/tab_bar/history.png');
-                    } else if (route.name === USER_INFO) {
+                    } else if (route.name === DEALS) {
+                        iconName = require('../res/images/tab_bar/hanghoaPressed.png');
+                        iconNameGray = require('../res/images/tab_bar/hanghoa.png');
+                    } else if (route.name === PARTERS) {
                         iconName = require('../res/images/tab_bar/userPressed.png');
                         iconNameGray = require('../res/images/tab_bar/user.png');
-                    } else if (route.name === CHAT) {
-                        iconName = require('../res/images/bottom_tab/noti_color.png');
-                        iconNameGray = require('../res/images/bottom_tab/noti.png');
+                    } else if (route.name === GOODS) {
+                        iconName = require('../res/images/tab_bar/historyPressed.png');
+                        iconNameGray = require('../res/images/tab_bar/history.png');
                     }
                     return (
                         <Image
@@ -72,10 +65,11 @@ export default function BottomTabNavigator() {
                 // }
 
             }}>
-            <Tab.Screen name={HOME} component={HomeScreen} options={{ tabBarLabel: getString('COMMON_BOTTOM_TAB_HOME') }} />
-            <Tab.Screen name={NOTIFICATION} component={NotificationScreen} options={{ tabBarLabel: getString('COMMON_BOTTOM_TAB_NOTIFICATION') }} />
-            <Tab.Screen name={SCHEDULE} component={ScheduleScreen} options={{ tabBarLabel: getString('COMMON_BOTTOM_TAB_SCHEDULE') }} />
-            <Tab.Screen name={USER_INFO} component={AccountScreen} options={{ tabBarLabel: getString('COMMON_BOTTOM_TAB_ACCOUNT') }} />
+            <Tab.Screen name={HOME} component={HomeScreen} options={{ tabBarLabel: 'Tổng quan' }} />
+            <Tab.Screen name={NOTIFICATION} component={HomeScreen} options={{ tabBarLabel: 'Thông báo' }} />
+            <Tab.Screen name={DEALS} component={HomeScreen} options={{ tabBarLabel: 'Giao dịch' }} />
+            <Tab.Screen name={GOODS} component={HomeScreen} options={{ tabBarLabel: 'Hàng hóa' }} />
+            <Tab.Screen name={PARTERS} component={LoginScreen} options={{ tabBarLabel: 'Đối tác' }} />
         </Tab.Navigator>
     );
 }

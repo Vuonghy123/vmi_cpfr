@@ -13,11 +13,8 @@ import * as COLOR from '../constant/Colors'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { scaleModerate, scaleVertical, scale } from '../constant/Scale';
 import { texts } from '../constant/CommonStyles';
-import { CommonActions } from '@react-navigation/native';
-import LinearGradient from 'react-native-linear-gradient';
 import ImageIcon from './ImageIcon';
 import { PRIMARY_COLOR, RED, WHITE } from '../constant/Colors';
-import { connect } from 'react-redux';
 import { isLargePhone } from '../constant/Layout';
 const { width, height } = Dimensions.get('window');
 const headerHeight = scaleVertical(60)
@@ -123,15 +120,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (store) => {
-  return {
-    count: store.systemReducer.count,
-
-  }
-}
-const mapDispatchToProps = (dispatch) => {
-  return {
-
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;

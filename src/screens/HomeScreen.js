@@ -4,40 +4,17 @@ import {
     Image, StyleSheet, Platform, SafeAreaView, ImageBackground, AsyncStorage, Alert, Linking, Modal
 } from 'react-native';
 import { BACKGROUND_COLOR, BLACK, GRAY_FONTCOLOR, GREEN, GREEN_FONTCOLOR, PRIMARY_COLOR, RED, WHITE } from '../constant/Colors';
-import { scale,  scaleVertical } from '../utils/Scale';
+import { scale, scaleVertical } from '../utils/Scale';
 import { getString } from '../utils/GetString';
+import Header from '../components/Header';
 class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            password: '',
-            isLoading: false,
-            responseError: null,
-            isShowpassword: true,
-            link: require('../res/images/login/eyes.png'),
-            isShowButton: false,
-            focusingInput: '',
-            isRememberAccount: false,
-            isOpenModalLanguage: false
         };
     }
 
     async componentDidMount() {
-        let crediental = await AsyncStorage.getItem('crediental');
-        let dataCrediental = JSON.parse(crediental)
-        console.log(dataCrediental)
-        if (dataCrediental) {
-            console.log(dataCrediental)
-            console.log('data crediental:', dataCrediental.username)
-            await this.setState({
-                ...this.state,
-                username: dataCrediental.username,
-                password: dataCrediental.password,
-                isRememberAccount: true
-            })
-            console.log('state', this.state)
-        }
     }
 
     _isFillInput() {
@@ -76,8 +53,12 @@ class HomeScreen extends React.Component {
 
     render() {
         return (
-            <View style={{width: containerW, height: containerH, backgroundColor: 'red'}}>
-
+            <View style={{ backgroundColor: BACKGROUND_COLOR }}>
+                <Header
+                    navigation={this.props.navigation}
+                    back={false}
+                    title={'Tổng quan'}
+                ></Header>
             </View>
 
         );
