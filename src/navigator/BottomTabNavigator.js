@@ -8,6 +8,10 @@ import HomeScreen from '../screens/HomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 import { size } from '../constant/CommonStyles';
 import { GRAY_FONTCOLOR, PRIMARY_COLOR,WHITE } from '../constant/Colors';
+import NotificationScreen from '../screens/NotificationScreen';
+import DealsScreen from '../screens/DealsScreens';
+import GoodsScreen from '../screens/GoodsScreen';
+import PartersScreen from '../screens/PartersScreen';
 const Tab = createBottomTabNavigator();
 export default function BottomTabNavigator() {
     return (
@@ -66,10 +70,10 @@ export default function BottomTabNavigator() {
 
             }}>
             <Tab.Screen name={HOME} component={HomeScreen} options={{ tabBarLabel: 'Tổng quan' }} />
-            <Tab.Screen name={NOTIFICATION} component={HomeScreen} options={{ tabBarLabel: 'Thông báo' }} />
-            <Tab.Screen name={DEALS} component={HomeScreen} options={{ tabBarLabel: 'Giao dịch' }} />
-            <Tab.Screen name={GOODS} component={HomeScreen} options={{ tabBarLabel: 'Hàng hóa' }} />
-            <Tab.Screen name={PARTERS} component={LoginScreen} options={{ tabBarLabel: 'Đối tác' }} />
+            <Tab.Screen name={NOTIFICATION} component={NotificationScreen} options={{ tabBarLabel: 'Thông báo' }} />
+            <Tab.Screen name={DEALS} component={DealsScreen} options={{ tabBarLabel: 'Giao dịch' }} />
+            <Tab.Screen name={GOODS} component={GoodsScreen} options={{ tabBarLabel: 'Hàng hóa' }} />
+            <Tab.Screen name={PARTERS} component={PartersScreen} options={{ tabBarLabel: 'Đối tác' }} />
         </Tab.Navigator>
     );
 }

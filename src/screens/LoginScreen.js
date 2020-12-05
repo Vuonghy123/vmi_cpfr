@@ -54,6 +54,7 @@ class LoginScreen extends React.Component {
     }
 
     async _onPressLogin() {
+        //this.props.navigation.navigate(BOTTOM_TAB)
         if (this._isFillInput()) {
             this.setState({ isLoading: true })
             Keyboard.dismiss();
@@ -92,12 +93,17 @@ class LoginScreen extends React.Component {
                 style={styles.imageBackground}
             >
 
-                <View style={{ height: '20%', width: '100%', justifyContent: 'center', alignItems: 'center', paddingTop: scale(10) }}>
+                {/*  <View style={{ height: '20%', width: '100%', justifyContent: 'center', alignItems: 'center', paddingTop: scale(10) }}>
                     <Image
                         source={require('../res/images/login/CPFR2.png')}
                         resizeMode="center"
-                    />
-                </View>
+                    /> */}
+                <Image
+                    style={{ height: '20%', width: '100%', justifyContent: 'center', alignItems: 'center', paddingTop: scale(10) }}
+                    source={{ uri: 'https://logistikknowhow.com/wp-content/uploads/2017/12/CPFR-Prozess-Supplay-Chain-Management-768x512.jpg.webp' }}
+                    resizeMode='stretch'
+                />
+                {/*  </View> */}
                 <View style={{ height: '40%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
                     <View style={{ width: '80%', justifyContent: 'flex-start' }}>
                         <Text allowFontScaling={false} style={{ fontSize: scale(22), fontWeight: 'bold', color: PRIMARY_COLOR }}>{getString('LOGINSCREEN_TEXT_LOGIN')}</Text>
@@ -202,9 +208,13 @@ class LoginScreen extends React.Component {
                         ></ButtonLinear>
                     </View>
                 </View>
-                <View style={{ height: '35%', width: '100%', justifyContent: 'center', alignItems: 'center', paddingBottom: scale(15) }}>
-                    <Image source={require('../res/images/login/VMI.png')} />
-                </View>
+
+                <Image
+                    style={{ height: '35%', width: '95%', justifyContent: 'center', alignItems: 'center', paddingBottom: scale(15), marginLeft: '2.5%' }}
+                    source={{ uri: 'https://img.icn.vn/Image.ashx?src=/uploads/logistics/vmi-benefits.png&width=670' }}
+                    resizeMode='stretch'
+                />
+
                 {
                     this.state.isLoading ? <Loading /> : null
                 }
@@ -232,7 +242,7 @@ class LoginScreen extends React.Component {
                         </TouchableOpacity>
                         : null}
 
-                {
+                {/* {
                     this.state.isOpenModalLanguage ?
                         <Modal
                             animationType={'fade'}
@@ -275,7 +285,7 @@ class LoginScreen extends React.Component {
                             </TouchableOpacity>
                         </Modal> :
                         null
-                }
+                } */}
             </TouchableOpacity>
 
         );
