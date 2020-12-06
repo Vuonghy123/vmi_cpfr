@@ -11,7 +11,7 @@ import ImageIcon from '../components/ImageIcon';
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { Item } from 'native-base';
 import { color } from 'react-native-reanimated';
-import { BILLBRANCH, BILLSALES } from '../navigator/RouteName';
+import { BILLBRANCH, BILLSALES,ACCOUNT } from '../navigator/RouteName';
 class HomeScreen extends React.Component {
     constructor(props) {
         super(props);
@@ -166,6 +166,8 @@ class HomeScreen extends React.Component {
                     navigation={this.props.navigation}
                     back={false}
                     title={'Tổng quan'}
+                    rightIcon={'user-cog'}
+                    onPressRightIcon={() => this.props.navigation.navigate(ACCOUNT)}
                 ></Header>
                 <ScrollView
                     contentContainerStyle={{ width: containerW, backgroundColor: WHITE }}

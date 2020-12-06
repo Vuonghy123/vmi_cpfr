@@ -7,6 +7,7 @@ import { WHITE, BLACK, PRIMARY_COLOR, BACKGROUND_COLOR, LINEAR_START, GRAY_FONTC
 import { scale, scaleVertical } from '../utils/Scale';
 import { getString } from '../utils/GetString';
 import Header from '../components/Header';
+import Icon from 'react-native-vector-icons/FontAwesome5'
 
 class DealsScreen extends React.Component {
     constructor(props) {
@@ -23,13 +24,68 @@ class DealsScreen extends React.Component {
                 behavior={Platform.OS == "ios" ? "padding" : "height"}
                 style={styles.container}>
                 <Header
-                    title={'Thông báo'}
+                    title={'Giao dịch'}
                 ></Header>
                 <ScrollView
                     contentContainerStyle={{ width: containerW, backgroundColor: WHITE }}
                     showsVerticalScrollIndicator={false}
                 >
-                    <Text allowFontScaling={false} style={styles.textMediumPrimaryColorCenter}>Giao dịch ở đây</Text>
+                    <TouchableOpacity
+                        style={styles.container1}
+                    >
+                        <Icon name={'clipboard-check'} size={scale(30)} color={BLACK}></Icon>
+                        <Text allowFontScaling={false} style={styles.textBigPrimaryColorBold}>{'Đặt hàng'}</Text>
+                        <Icon name='angle-right' size={scale(25)} color={GRAY_FONTCOLOR} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.container1}
+                    >
+                        <Icon name={'file-alt'} size={scale(30)} color={BLACK}></Icon>
+                        <Text allowFontScaling={false} style={styles.textBigPrimaryColorBold}>{'Hóa đơn'}</Text>
+                        <Icon name='angle-right' size={scale(25)} color={GRAY_FONTCOLOR} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.container1}
+                    >
+                        <Icon name={'file-import'} size={scale(30)} color={BLACK}></Icon>
+                        <Text allowFontScaling={false} style={styles.textBigPrimaryColorBold}>{'Vận đơn'}</Text>
+                        <Icon name='angle-right' size={scale(25)} color={GRAY_FONTCOLOR} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.container1}
+                    >
+                        <Icon name={'window-close'} size={scale(30)} color={BLACK}></Icon>
+                        <Text allowFontScaling={false} style={styles.textBigPrimaryColorBold}>{'Trả hàng'}</Text>
+                        <Icon name='angle-right' size={scale(25)} color={GRAY_FONTCOLOR} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.container1}
+                    >
+                        <Icon name={'arrow-circle-up'} size={scale(30)} color={BLACK}></Icon>
+                        <Text allowFontScaling={false} style={styles.textBigPrimaryColorBold}>{'Nhập hàng'}</Text>
+                        <Icon name='angle-right' size={scale(25)} color={GRAY_FONTCOLOR} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.container1}
+                    >
+                        <Icon name={'times-circle'} size={scale(30)} color={BLACK}></Icon>
+                        <Text allowFontScaling={false} style={styles.textBigPrimaryColorBold}>{'Trả nhập hàng'}</Text>
+                        <Icon name='angle-right' size={scale(25)} color={GRAY_FONTCOLOR} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.container1}
+                    >
+                        <Icon name={'truck-moving'} size={scale(30)} color={BLACK}></Icon>
+                        <Text allowFontScaling={false} style={styles.textBigPrimaryColorBold}>{'Chuyển hàng'}</Text>
+                        <Icon name='angle-right' size={scale(25)} color={GRAY_FONTCOLOR} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.container1}
+                    >
+                        <Icon name={'exchange-alt'} size={scale(30)} color={BLACK}></Icon>
+                        <Text allowFontScaling={false} style={styles.textBigPrimaryColorBold}>{'Xuất hủy'}</Text>
+                        <Icon name='angle-right' size={scale(25)} color={GRAY_FONTCOLOR} />
+                    </TouchableOpacity>
                 </ScrollView>
             </KeyboardAvoidingView >
 
@@ -45,134 +101,20 @@ const styles = StyleSheet.create({
         backgroundColor: BACKGROUND_COLOR,
         alignItems: 'center'
     },
-    imageBackground: {
-        width: containerW,
-        height: containerH,
-    },
-    // styte text
-    textSmallNormal: {
-        fontSize: scale(13),
-        fontWeight: 'normal'
-    },
-    textSmallNormalPrimarycolor: {
-        fontSize: scale(13),
-        fontWeight: 'normal',
-        color: PRIMARY_COLOR,
-    },
-    textSmallNormalPrimarycolorSpecial1: {
-        fontSize: scale(13),
-        fontWeight: 'normal',
-        color: PRIMARY_COLOR,
-        width: '30%',
-    },
-    textSmallNormalBlackcolorSpecial2: {
-        fontSize: scale(13),
-        fontWeight: 'normal',
-        color: BLACK,
-        width: '70%',
-    },
-    textSmallBoldBlackcolor: {
-        fontSize: scale(13),
-        fontWeight: 'bold',
-        color: BLACK
-    },
-    textSmallBold: {
-        fontSize: scale(13),
-        fontWeight: 'bold',
-        color: BLACK
-    },
-    textareaContainer: {
-        width: '100%',
-        height: '100%',
-        backgroundColor: BACKGROUND_GRAY_DESIGN,
-        borderRadius: scale(15)
-    },
-    textarea: {
-        textAlignVertical: 'top',
-        height: '100%',
-        fontSize: scale(13),
-        color: GRAY_FONTCOLOR,
-        width: '100%',
-        paddingLeft: scale(10),
-        paddingTop: scale(10)
-    },
-    textMediumPrimaryColorCenter: {
-        fontSize: scale(16),
-        fontWeight: 'normal',
-        color: PRIMARY_COLOR,
-        textAlign: 'center',
-    },
-    textRedSmall: {
-        color: '#EB5757',
-        fontSize: scale(13)
-    },
-    textMediumNormalGray: {
-        fontSize: scale(16),
-        fontWeight: 'normal',
-        color: GRAY_FONTCOLOR,
-        fontStyle: 'italic'
-    },
-    textSmallNormalGray: {
-        fontSize: scale(13),
-        fontWeight: 'normal',
-        color: GRAY_FONTCOLOR,
-    },
-    textAgliRightSmallNormalGray: {
-        fontSize: scale(13),
-        fontWeight: 'normal',
-        color: GRAY_FONTCOLOR,
-        fontStyle: 'italic',
-        textAlign: 'right'
-    },
-    textSmallNormalLinearStart: {
-        fontSize: scale(13),
-        fontWeight: 'normal',
-        color: LINEAR_START
-    },
-    textMediumPrimaryColor: {
-        fontSize: scale(16),
-        fontWeight: 'normal',
-        color: PRIMARY_COLOR,
-        alignItems: 'center'
-    },
-    textMediumPrimaryColorBold: {
-        fontSize: scale(16),
-        fontWeight: 'bold',
-        color: PRIMARY_COLOR,
+    container1: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center', width: '100%',
+        height: scale(60), paddingLeft: scale(10),
+        paddingRight: scale(10),
+        borderBottomColor: BLACK,
+        borderBottomWidth: scale(0.3)
     },
     textBigPrimaryColorBold: {
         fontSize: scale(22),
         fontWeight: 'bold',
         color: PRIMARY_COLOR,
     },
-    textMediumBlackColor: {
-        fontSize: scale(16),
-        fontWeight: 'normal',
-        color: BLACK,
-    },
-    textMediumBlackColorBold: {
-        fontSize: scale(16),
-        fontWeight: 'bold',
-        color: BLACK,
-    },
-    textHeaderPri: {
-        fontSize: scale(30),
-        fontWeight: 'bold',
-        color: PRIMARY_COLOR,
-    },
-    textHeader: {
-        fontSize: scale(20),
-        fontWeight: 'bold',
-        color: BLACK,
-    },
-    textinputStyle: {
-        width: '80%',
-        height: scale(47),
-        fontSize: scale(13),
-        textAlign: 'left',
-        paddingVertical: scaleVertical(10),
-        borderBottomWidth: scale(1),
-    }
-})
 
+})
 export default DealsScreen;

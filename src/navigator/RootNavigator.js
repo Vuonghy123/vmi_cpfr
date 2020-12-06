@@ -6,13 +6,19 @@ import {
   HOME,
   BOTTOM_TAB,
   BILLSALES,
-  BILLBRANCH
+  BILLBRANCH,
+  ACCOUNT,
+  CHANGEPASS,
+  CENTERSCREEN
 } from './RouteName';
 import BottomTabNavigator from './BottomTabNavigator'
 import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
 import BillSalse from '../screens/InitHomeScreen/BillSales';
 import BillBranch from '../screens/InitHomeScreen/BillBranch';
+import AccountScreen from '../screens/Account/AccountScreen';
+import ChangePasswordScreen from '../screens/Account/ChangePasswordScreen';
+import CenterBranhScreen from '../screens/Account/CenterBranchScreen';
 
 const Stack = createStackNavigator();
 function RootNavigator() {
@@ -24,6 +30,9 @@ function RootNavigator() {
         <Stack.Screen name={BOTTOM_TAB} component={BottomTabNavigator} />
         <Stack.Screen name={BILLSALES} component={BillSalse} />
         <Stack.Screen name={BILLBRANCH} component={BillBranch} />
+        <Stack.Screen name={ACCOUNT} component={AccountScreen} />
+        <Stack.Screen name={CHANGEPASS} component={ChangePasswordScreen} />
+        <Stack.Screen name={CENTERSCREEN} component={CenterBranhScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

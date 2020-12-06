@@ -14,7 +14,8 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { scaleModerate, scaleVertical, scale } from '../constant/Scale';
 import { texts } from '../constant/CommonStyles';
 import ImageIcon from './ImageIcon';
-import { PRIMARY_COLOR, RED, WHITE } from '../constant/Colors';
+import LinearGradient from 'react-native-linear-gradient';
+import { PRIMARY_COLOR, RED, WHITE, LINEAR_START, LINEAR_END } from '../constant/Colors';
 import { isLargePhone } from '../constant/Layout';
 const { width, height } = Dimensions.get('window');
 const headerHeight = scaleVertical(60)
@@ -29,14 +30,10 @@ class Header extends Component {
   render() {
     const { leftIcon, title, rightIcon, screenPopUpFromRightIcon } = this.props;
     // 'arrow-left'
-    let canPress = false;
-    if (this.props.canPress === true) {
-      canPress = true;
-    }
     return (
-      <TouchableOpacity
-        disabled={!canPress}
-        onPress={() => this.props.onPressHeader()}
+      <LinearGradient
+        start={{ x: 1, y: 0 }} end={{ x: 0, y: 1 }}
+        colors={[LINEAR_START, LINEAR_END]}
         style={styles.container}
       >
         <View style={styles.headerContent}>
@@ -57,20 +54,14 @@ class Header extends Component {
                   }
                 }}
                 style={styles.buttonArea}>
-                <ImageIcon source={require('../res/images/common/back.png')} size={scaleModerate(22)} color={COLOR.WHITE} />
+                <ImageIcon source={require('../res/images/common/back.png')} size={scaleModerate(22)} color={WHITE}/>
               </TouchableOpacity> :
-              this.props.logo ?
-                <View
-                  style={styles.buttonArea}>
-                  <ImageIcon source={{ uri: this.props?.logo }} size={scaleModerate(35)} color={COLOR.WHITE} />
-                </View>
-                :
-                <View style={styles.buttonArea} />
+              <View style={styles.buttonArea} />
           }
 
           <View style={{ width: windowWidth - headerHeight - headerHeight, height: headerHeight, justifyContent: 'center', alignItems: 'center' }}>
 
-            <Text allowFontScaling={false} style={[texts.white_bold, { fontSize: scale(22), color: PRIMARY_COLOR }]}>{title || 'Edukite'}</Text>
+            <Text allowFontScaling={false} style={[texts.white_bold, { fontSize: scale(22), color: WHITE }]}>{title || 'NUll'}</Text>
 
           </View>
 
@@ -80,7 +71,7 @@ class Header extends Component {
 
               <TouchableOpacity style={styles.buttonArea}
                 onPress={() => this.props.onPressRightIcon()}>
-                <Icon name={rightIcon} size={scaleModerate(22)} color={COLOR.WHITE} />
+                <Icon name={rightIcon} size={scaleModerate(22)} color={WHITE} />
               </TouchableOpacity> :
               <TouchableOpacity style={styles.buttonArea}
                 onPress={() => this.props.onPressRightIcon()}>
@@ -93,7 +84,7 @@ class Header extends Component {
               : <View style={styles.buttonArea} />
           }
         </View>
-      </TouchableOpacity>
+      </LinearGradient>
     );
   }
 }

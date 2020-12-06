@@ -3,20 +3,65 @@ import {
     Text, View, TextInput, TouchableOpacity, Dimensions, Keyboard,
     Image, StyleSheet, Platform, ScrollView, ImageBackground, AsyncStorage, Alert, Linking, Modal, KeyboardAvoidingView
 } from 'react-native';
-import { WHITE, BLACK, PRIMARY_COLOR, BACKGROUND_COLOR, LINEAR_START, GRAY_FONTCOLOR, BACKGROUND_GRAY_DESIGN, GREEN_FONTCOLOR, GREEN, GRAY_LIGHT } from '../constant/Colors';
+import { WHITE, BLACK, PRIMARY_COLOR, BACKGROUND_COLOR, PINK_FONTCOLOR, GRAY_FONTCOLOR, BACKGROUND_GRAY_DESIGN, GREEN_FONTCOLOR, GREEN, GRAY_LIGHT } from '../constant/Colors';
 import { scale, scaleVertical } from '../utils/Scale';
 import { getString } from '../utils/GetString';
 import Header from '../components/Header';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import moment from 'moment';
+import { Item } from 'native-base';
 
 class NotificationScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            time: new Date(),
         }
+        this.dataNoti = [
+            {
+                value: 1,
+                lable: "Đang có hàng hóa vượt mức quy định tồn tại",
+                branch: "Chi nhánh trung tâm.",
+                time: moment(this.state.time).format('LT'),
+            },
+            {
+                value: 1,
+                lable: "Đang có hàng hóa sắp hết ở kho",
+                branch: "Chi nhánh trung tâm.",
+                time: moment(this.state.time).subtract(1, 'days').calendar(),
+            },
+            {
+                value: 1,
+                lable: "Đang có hàng hóa vượt mức quy định tồn tại",
+                branch: "Chi nhánh trung tâm.",
+                time: moment(this.state.time).subtract(2, 'days').calendar()
+            }
+        ]
     }
 
     async componentDidMount() {
     }
+
+    renderNoti(id, name, branch, time) {
+        return (
+            <TouchableOpacity
+                style={styles.container1}
+            >
+                <View style={{ flex: 2 }}>
+                    <Icon name={'tag'} size={scale(30)} color={PINK_FONTCOLOR}></Icon>
+                </View>
+                <View style={{ flex: 8, alignItems: 'flex-start', justifyContent: 'center' }}>
+                    <Text allowFontScaling={false} style={styles.textMediumBlackColor} numberOfLines={2}>{name}</Text>
+                    <Text allowFontScaling={false} style={styles.textMediumBlackColor} numberOfLines={1}>{branch}</Text>
+                    <View style={{ flexDirection: 'row', justifyContent:'flex-start', alignItems:'center' }}>
+                        <Icon name={'clock'} size={scale(12)} color={BLACK}></Icon>
+                        <Text allowFontScaling={false} style={styles.textSmallNormalGray}>{' '}{time}</Text>
+                    </View>
+                </View>
+            </TouchableOpacity>
+        )
+    }
+
     render() {
         return (
             <KeyboardAvoidingView
@@ -29,7 +74,11 @@ class NotificationScreen extends React.Component {
                     contentContainerStyle={{ width: containerW, backgroundColor: WHITE }}
                     showsVerticalScrollIndicator={false}
                 >
-                    <Text allowFontScaling={false} style={styles.textMediumPrimaryColorCenter}>Thông báo ở đây</Text>
+                    {
+                        this.dataNoti.map((item, index) => {
+                            return this.renderNoti(item?.value, item?.lable, item?.branch, item?.time)
+                        })
+                    }
                 </ScrollView>
             </KeyboardAvoidingView >
 
@@ -45,134 +94,34 @@ const styles = StyleSheet.create({
         backgroundColor: BACKGROUND_COLOR,
         alignItems: 'center'
     },
-    imageBackground: {
-        width: containerW,
-        height: containerH,
-    },
-    // styte text
-    textSmallNormal: {
-        fontSize: scale(13),
-        fontWeight: 'normal'
-    },
-    textSmallNormalPrimarycolor: {
-        fontSize: scale(13),
-        fontWeight: 'normal',
-        color: PRIMARY_COLOR,
-    },
-    textSmallNormalPrimarycolorSpecial1: {
-        fontSize: scale(13),
-        fontWeight: 'normal',
-        color: PRIMARY_COLOR,
-        width: '30%',
-    },
-    textSmallNormalBlackcolorSpecial2: {
-        fontSize: scale(13),
-        fontWeight: 'normal',
-        color: BLACK,
-        width: '70%',
-    },
-    textSmallBoldBlackcolor: {
-        fontSize: scale(13),
-        fontWeight: 'bold',
-        color: BLACK
-    },
-    textSmallBold: {
-        fontSize: scale(13),
-        fontWeight: 'bold',
-        color: BLACK
-    },
-    textareaContainer: {
-        width: '100%',
-        height: '100%',
-        backgroundColor: BACKGROUND_GRAY_DESIGN,
-        borderRadius: scale(15)
-    },
-    textarea: {
-        textAlignVertical: 'top',
-        height: '100%',
-        fontSize: scale(13),
-        color: GRAY_FONTCOLOR,
-        width: '100%',
-        paddingLeft: scale(10),
-        paddingTop: scale(10)
-    },
-    textMediumPrimaryColorCenter: {
-        fontSize: scale(16),
-        fontWeight: 'normal',
-        color: PRIMARY_COLOR,
-        textAlign: 'center',
-    },
-    textRedSmall: {
-        color: '#EB5757',
-        fontSize: scale(13)
-    },
-    textMediumNormalGray: {
-        fontSize: scale(16),
-        fontWeight: 'normal',
-        color: GRAY_FONTCOLOR,
-        fontStyle: 'italic'
-    },
-    textSmallNormalGray: {
-        fontSize: scale(13),
-        fontWeight: 'normal',
-        color: GRAY_FONTCOLOR,
-    },
-    textAgliRightSmallNormalGray: {
-        fontSize: scale(13),
-        fontWeight: 'normal',
-        color: GRAY_FONTCOLOR,
-        fontStyle: 'italic',
-        textAlign: 'right'
-    },
-    textSmallNormalLinearStart: {
-        fontSize: scale(13),
-        fontWeight: 'normal',
-        color: LINEAR_START
-    },
-    textMediumPrimaryColor: {
-        fontSize: scale(16),
-        fontWeight: 'normal',
-        color: PRIMARY_COLOR,
-        alignItems: 'center'
-    },
-    textMediumPrimaryColorBold: {
-        fontSize: scale(16),
-        fontWeight: 'bold',
-        color: PRIMARY_COLOR,
-    },
-    textBigPrimaryColorBold: {
-        fontSize: scale(22),
-        fontWeight: 'bold',
-        color: PRIMARY_COLOR,
+    container1: {
+        flexDirection: 'row',
+        //justifyContent: 'space-between',
+        alignItems: 'center', width: '100%',
+        height: scale(100), paddingLeft: scale(15),
+        paddingRight: scale(15),
+        paddingTop: scale(10),
+        paddingBottom: scale(10),
+        borderBottomColor: BLACK,
+        borderBottomWidth: scale(0.3),
+        backgroundColor: GRAY_LIGHT
     },
     textMediumBlackColor: {
         fontSize: scale(16),
         fontWeight: 'normal',
         color: BLACK,
     },
-    textMediumBlackColorBold: {
-        fontSize: scale(16),
-        fontWeight: 'bold',
-        color: BLACK,
-    },
-    textHeaderPri: {
-        fontSize: scale(30),
+    textBigPrimaryColorBold: {
+        fontSize: scale(22),
         fontWeight: 'bold',
         color: PRIMARY_COLOR,
     },
-    textHeader: {
-        fontSize: scale(20),
-        fontWeight: 'bold',
-        color: BLACK,
-    },
-    textinputStyle: {
-        width: '80%',
-        height: scale(47),
+    textSmallNormalGray: {
         fontSize: scale(13),
-        textAlign: 'left',
-        paddingVertical: scaleVertical(10),
-        borderBottomWidth: scale(1),
-    }
+        fontWeight: 'normal',
+        color: GRAY_FONTCOLOR,
+    },
+
 })
 
 export default NotificationScreen;

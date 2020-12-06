@@ -7,6 +7,7 @@ import { WHITE, BLACK, PRIMARY_COLOR, BACKGROUND_COLOR, LINEAR_START, GRAY_FONTC
 import { scale, scaleVertical } from '../utils/Scale';
 import { getString } from '../utils/GetString';
 import Header from '../components/Header';
+import Icon from 'react-native-vector-icons/FontAwesome5'
 
 class GoodsScreen extends React.Component {
     constructor(props) {
@@ -23,13 +24,26 @@ class GoodsScreen extends React.Component {
                 behavior={Platform.OS == "ios" ? "padding" : "height"}
                 style={styles.container}>
                 <Header
-                    title={'Thông báo'}
+                    title={'Hàng hóa'}
                 ></Header>
                 <ScrollView
                     contentContainerStyle={{ width: containerW, backgroundColor: WHITE }}
                     showsVerticalScrollIndicator={false}
                 >
-                    <Text allowFontScaling={false} style={styles.textMediumPrimaryColorCenter}>Hàng hóa ở đây</Text>
+                    <TouchableOpacity
+                        style={styles.container1}
+                    >
+                        <Icon name={'cubes'} size={scale(30)} color={GRAY_FONTCOLOR}></Icon>
+                        <Text allowFontScaling={false} style={styles.textBigPrimaryColorBold}>{'Hàng hóa'}</Text>
+                        <Icon name='angle-right' size={scale(25)} color={GRAY_FONTCOLOR} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.container1}
+                    >
+                        <Icon name={'calendar-check'} size={scale(30)} color={GRAY_FONTCOLOR}></Icon>
+                        <Text allowFontScaling={false} style={styles.textBigPrimaryColorBold}>{'Kiểm kho'}</Text>
+                        <Icon name='angle-right' size={scale(25)} color={GRAY_FONTCOLOR} />
+                    </TouchableOpacity>
                 </ScrollView>
             </KeyboardAvoidingView >
 
@@ -45,134 +59,21 @@ const styles = StyleSheet.create({
         backgroundColor: BACKGROUND_COLOR,
         alignItems: 'center'
     },
-    imageBackground: {
-        width: containerW,
-        height: containerH,
-    },
-    // styte text
-    textSmallNormal: {
-        fontSize: scale(13),
-        fontWeight: 'normal'
-    },
-    textSmallNormalPrimarycolor: {
-        fontSize: scale(13),
-        fontWeight: 'normal',
-        color: PRIMARY_COLOR,
-    },
-    textSmallNormalPrimarycolorSpecial1: {
-        fontSize: scale(13),
-        fontWeight: 'normal',
-        color: PRIMARY_COLOR,
-        width: '30%',
-    },
-    textSmallNormalBlackcolorSpecial2: {
-        fontSize: scale(13),
-        fontWeight: 'normal',
-        color: BLACK,
-        width: '70%',
-    },
-    textSmallBoldBlackcolor: {
-        fontSize: scale(13),
-        fontWeight: 'bold',
-        color: BLACK
-    },
-    textSmallBold: {
-        fontSize: scale(13),
-        fontWeight: 'bold',
-        color: BLACK
-    },
-    textareaContainer: {
-        width: '100%',
-        height: '100%',
-        backgroundColor: BACKGROUND_GRAY_DESIGN,
-        borderRadius: scale(15)
-    },
-    textarea: {
-        textAlignVertical: 'top',
-        height: '100%',
-        fontSize: scale(13),
-        color: GRAY_FONTCOLOR,
-        width: '100%',
-        paddingLeft: scale(10),
-        paddingTop: scale(10)
-    },
-    textMediumPrimaryColorCenter: {
-        fontSize: scale(16),
-        fontWeight: 'normal',
-        color: PRIMARY_COLOR,
-        textAlign: 'center',
-    },
-    textRedSmall: {
-        color: '#EB5757',
-        fontSize: scale(13)
-    },
-    textMediumNormalGray: {
-        fontSize: scale(16),
-        fontWeight: 'normal',
-        color: GRAY_FONTCOLOR,
-        fontStyle: 'italic'
-    },
-    textSmallNormalGray: {
-        fontSize: scale(13),
-        fontWeight: 'normal',
-        color: GRAY_FONTCOLOR,
-    },
-    textAgliRightSmallNormalGray: {
-        fontSize: scale(13),
-        fontWeight: 'normal',
-        color: GRAY_FONTCOLOR,
-        fontStyle: 'italic',
-        textAlign: 'right'
-    },
-    textSmallNormalLinearStart: {
-        fontSize: scale(13),
-        fontWeight: 'normal',
-        color: LINEAR_START
-    },
-    textMediumPrimaryColor: {
-        fontSize: scale(16),
-        fontWeight: 'normal',
-        color: PRIMARY_COLOR,
-        alignItems: 'center'
-    },
-    textMediumPrimaryColorBold: {
-        fontSize: scale(16),
-        fontWeight: 'bold',
-        color: PRIMARY_COLOR,
+    container1: {
+        flexDirection: 'row', 
+        justifyContent: 'space-between', 
+        alignItems: 'center', width: '100%', 
+        height: scale(60), paddingLeft: scale(10),
+         paddingRight: scale(10), 
+         borderBottomColor: BLACK, 
+         borderBottomWidth: scale(0.3)
     },
     textBigPrimaryColorBold: {
         fontSize: scale(22),
         fontWeight: 'bold',
         color: PRIMARY_COLOR,
     },
-    textMediumBlackColor: {
-        fontSize: scale(16),
-        fontWeight: 'normal',
-        color: BLACK,
-    },
-    textMediumBlackColorBold: {
-        fontSize: scale(16),
-        fontWeight: 'bold',
-        color: BLACK,
-    },
-    textHeaderPri: {
-        fontSize: scale(30),
-        fontWeight: 'bold',
-        color: PRIMARY_COLOR,
-    },
-    textHeader: {
-        fontSize: scale(20),
-        fontWeight: 'bold',
-        color: BLACK,
-    },
-    textinputStyle: {
-        width: '80%',
-        height: scale(47),
-        fontSize: scale(13),
-        textAlign: 'left',
-        paddingVertical: scaleVertical(10),
-        borderBottomWidth: scale(1),
-    }
+
 })
 
 export default GoodsScreen;

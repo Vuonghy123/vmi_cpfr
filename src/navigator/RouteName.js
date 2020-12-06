@@ -8,5 +8,10 @@ export const PARTERS = 'Partners';
 export const STAFF = 'Staff';
 export const BILLSALES = 'BillSales';
 export const BILLBRANCH = 'BillBranch';
+export const ACCOUNT = 'Account';
+export const CHANGEPASS = 'ChangPass';
+export const CENTERSCREEN = 'CenterScreen';
+
+
 
 
